@@ -1,0 +1,12 @@
+.DS_Store
+dropMove
+dropMove-mpi
+intermediate/
+output/
+postProcess-contour/getData
+postProcess-contour/getFacets
+postProcess-vectors/getCM
+postProcess-vectors/getData
+postProcess-vectors/getDataSlice
+postProcess-vectors/getFacets
+postProcess-vectors/getVelocity_v2

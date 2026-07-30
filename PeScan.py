@@ -21,9 +21,10 @@ def compile_program():
 
 def run_sim(pe: float) -> bool:
     """
-    Runs ./dropMove <Pe>. Returns True if MOVED, False if NOT_MOVED.
+    Runs ./dropMove Pe=<value>. Returns True if MOVED, False if NOT_MOVED.
     """
-    out = subprocess.check_output([EXEC_NAME, f"{pe}"],
+    out = subprocess.check_output(
+        [EXEC_NAME, f"Pe={pe}", "movement_threshold=1"],
                                   universal_newlines=True,
                                   stderr=subprocess.STDOUT)
     moved = None
