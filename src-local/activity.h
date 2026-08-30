@@ -27,10 +27,10 @@ event defaults (i = 0)
   fprintf (ferr, "Recompiled!!!\n");
   for (scalar s in stracers) {
 #if TREE
-s.refine  = refine_bilinear;
-s.restriction = restriction_volume_average;
-s.gradient = p.gradient;
-s.dirty = true;
+    s.refine = refine_bilinear;
+    set_prolongation (s, refine_bilinear);
+    set_restriction (s, restriction_volume_average);
+    s.gradient = p.gradient;
 #endif // TREE
   }
 }
