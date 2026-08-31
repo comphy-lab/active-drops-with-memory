@@ -154,6 +154,9 @@ static void test_metadata_identity_values (void)
                                                 1e-12));
   CHECK (!delay_history_metadata_values_valid (2., 2.1, 0.5, 0.1,
                                                 1e-12));
+  CHECK (!delay_history_metadata_values_valid (2., 1., 0.5, 0.1,
+                                                INFINITY));
+  CHECK (!delay_history_metadata_values_valid (2., 1., 0.5, 0.1, -1.));
 }
 
 int main (void)

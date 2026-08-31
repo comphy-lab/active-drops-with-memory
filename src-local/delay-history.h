@@ -135,6 +135,7 @@ static inline int delay_history_metadata_values_valid (
   return isfinite(checkpoint_time) && checkpoint_time >= 0. &&
     isfinite(checkpoint_concentration_time) &&
     checkpoint_concentration_time >= 0. &&
+    isfinite(tolerance) && tolerance >= 0. &&
     checkpoint_concentration_time <= checkpoint_time + tolerance &&
     isfinite(delay_time) && delay_time > 0. &&
     isfinite(sample_interval) && sample_interval > 0.;
