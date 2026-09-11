@@ -69,11 +69,31 @@ reservoir imposed at the boundaries: both coordinates are periodic.
 | `densityRatio` | $\rho_i/\rho_o$ | 1 |
 
 `GammaSlope` is an independently specified coupling magnitude, not a
-parameter named “Ma”. Its default of four is consistent with using the
-equal-viscosity planar mobility scale; changing viscosity ratio does not
-automatically change this coefficient. `Oh` is derived as
-$\sqrt{Ca/Re}$ using the reference tension. Legacy `Oh` and `AcNum`
-arguments are rejected rather than silently reinterpreted.
+parameter named “Ma”. Its default of four matches the equal-viscosity
+planar mobility normalization only with a corresponding choice of uptake
+and reference scales. To make that condition explicit, write
+$\gamma_F=-\partial\gamma_\mathrm{dim}/\partial F_\mathrm{dim}>0$ and
+define a maximum-uptake comparison speed for a circular drop of radius $R_*$:
+
+$$
+M_{2D}=\frac{R_*\gamma_F}{2(\mu_i+\mu_o)},\qquad
+U_{M,\max}=\frac{J_{\max}M_{2D}}{D},\qquad
+\frac{U_{M,\max}}{U_*}=\frac{Da\,\mathrm{GammaSlope}}{2(1+\lambda)}.
+$$
+
+Thus `Da=1`, `viscosityRatio=1` and `GammaSlope=4` make this reference-speed
+ratio one. These values do not impose constant uptake: the local flux still
+contains $F_s/(K+F_s)$. The comparison speed is not a measured swimming speed
+or an onset criterion. `GammaSlope`, `Da` and `Pe` remain fixed when fuel
+is depleted or `InitialFuel` is changed; the physical uptake changes through
+$F_s$. For a radius $a\ne R_*$, the comparison-speed ratio has an additional
+factor $a/R_*$.
+
+The reference-tension Ohnesorge number is
+$Oh=\mu_o/\sqrt{\rho_o\gamma_*R_*}=\sqrt{Ca/Re}$. Consequently the
+momentum coefficient is $Re=Ca/Oh^2$; the planar mobility denominator does
+not supply an additional factor four in this coefficient. Legacy `Oh` and
+`AcNum` arguments are rejected rather than silently reinterpreted.
 
 ## Discretization and limits
 
