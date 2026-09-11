@@ -13,7 +13,7 @@ char filename[80];
 int nx, ny, len;
 double xmin, ymin, xmax, ymax, Deltax, Deltay;
 scalar * list = NULL;
-scalar cL[], D2c[], f[], vel[];
+scalar fuel[], D2c[], f[], vel[];
 
 int main(int a, char const *arguments[])
 {
@@ -22,7 +22,7 @@ int main(int a, char const *arguments[])
   xmax = atof(arguments[4]); ymax = atof(arguments[5]);
   ny = atoi(arguments[6]);
 
-  list = list_add (list, cL);
+  list = list_add (list, fuel);
   list = list_add (list, D2c);
   list = list_add (list, vel);
 
@@ -32,9 +32,7 @@ int main(int a, char const *arguments[])
   restore (file = filename);
 
   foreach(){
-    double ff = clamp(f[], 0., 1.);
-
-    cL[] *= (1.-ff);
+    /* fuel already stores the exterior inventory (1-f)F. */
     vel[] = sqrt(sq(u.x[]) + sq(u.y[]));
 
     double D11 = (u.y[0,1] - u.y[0,-1])/(2*Delta);

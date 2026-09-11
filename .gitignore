@@ -1,4 +1,10 @@
 .DS_Store
+basilisk/
+.project_config
+.comphy-basilisk/
+.docker_mode
+__pycache__/
+*.pyc
 dropMove
 dropMove-mpi
 intermediate/
